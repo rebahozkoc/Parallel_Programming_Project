@@ -93,4 +93,24 @@ Note that we also use a private variable sum in the parallel loop to avoid false
 
 RESULT:
 
+At first, the program gave an error. After asking the error to GPT again, it solved the problem.Chatgbt's result was observed to be very close to the reference result. The results are as follows: 
 
+
+```
+
+rebahozkoc@nebula:~/Parallel_Programming_Project/memory_data_locality/example1$ g++ BUGGY_spatial_col_major_perf.cpp 
+rebahozkoc@nebula:~/Parallel_Programming_Project/memory_data_locality/example1$ ./a.out 
+col major version took 1.08041
+rebahozkoc@nebula:~/Parallel_Programming_Project/memory_data_locality/example1$ g++ GPT_spatial_col_major.cpp 
+GPT_spatial_col_major.cpp: In function ‘int main()’:
+GPT_spatial_col_major.cpp:48:27: error: ‘setprecision’ was not declared in this scope
+   48 |          << time_taken << setprecision(5);
+      |                           ^~~~~~~~~~~~
+rebahozkoc@nebula:~/Parallel_Programming_Project/memory_data_locality/example1$ g++ GPT_spatial_col_major.cpp 
+rebahozkoc@nebula:~/Parallel_Programming_Project/memory_data_locality/example1$ ./a.out 
+Time taken by program is : 0.305722 sec 
+rebahozkoc@nebula:~/Parallel_Programming_Project/memory_data_locality/example1$ g++ REFERANCE_spatial_col_major.cpp 
+rebahozkoc@nebula:~/Parallel_Programming_Project/memory_data_locality/example1$ ./a.out 
+row major version took 0.308342
+
+```
