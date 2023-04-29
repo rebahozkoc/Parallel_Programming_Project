@@ -1,11 +1,11 @@
-Prompt:
+### Prompt:
 
 You are a high performance computing engineer. I want you to classify the bug here that reduces the performance. 
 
 "CODE"
 
 
-Response:
+### Response:
 
 The performance issue in this code is related to cache locality. The two-dimensional array b is allocated as an array of pointers to rows, and each row is allocated separately. This can lead to poor cache locality as the rows are not guaranteed to be contiguous in memory.
 
@@ -16,11 +16,11 @@ To improve cache locality, we can allocate b as a single contiguous block of mem
 This will ensure that the elements of b are stored contiguously in memory, which can improve cache locality and lead to better performance.
 
 
-Prompt:
+### Prompt:
 Thanks. Now, I want you to improve the performance of this code and solve the problem.
 
 
-Response:
+### Response:
 
 To improve the performance of the code, we can take the following steps:
 
@@ -91,9 +91,9 @@ int main () {
 
 Note that we also use a private variable sum in the parallel loop to avoid false sharing. False sharing occurs when multiple threads modify adjacent memory locations, which can lead to cache invalidations and performance degradation. By declaring sum as private, each thread gets its own copy of the variable, avoiding false sharing.
 
-RESULT:
+# RESULT:
 
-At first, the program gave an error. After asking the error to GPT again, it solved the problem.Chatgbt's result was observed to be very close to the reference result. The results are as follows: 
+At first, the program gave an error. After asking the error to GPT again, it solved the problem.ChatGPT's performance result was observed to be very close to the reference result. The results are as follows: 
 
 
 ```
