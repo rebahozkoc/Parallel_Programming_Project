@@ -1,0 +1,121 @@
+{
+    "HPC performance bugs": [
+      {
+        "Inefficient coding for target micro-architecure": [
+          [
+            {
+              "Memory/Data locality": [
+                {
+                  "Intra-thread data locality": [
+                    "cache locality",
+                    "Memory alignment",
+                    "GPU Register spilling",
+                    "Host-GPU device data communication",
+                    "GPU memory"
+                  ]
+                },
+                "Inter-thread Data locality"
+              ]
+            }
+          ],
+          [
+            {
+              "Micro-architectural inefficiency": [
+                "Missed compiler loop optimization",
+                "Loop carried dependence",
+                "suboptimal computational kernel size for the target",
+                "Use of slow instruction set",
+                "suboptimal API for the target architecture"
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "Missing parallelism": [
+          "Vector/SIMD parallelism",
+          "GPU parallelism",
+          "Instruction level parallelism",
+          "Task parallelism"
+        ]
+      },
+      {
+        "Parallelization overhead/inefficiency": [
+          "small parallel region",
+          "Inefficeint thread mapping / inefficient block size / Load imbalance",
+          "Under-parallelization",
+          "Over-Parallelization"
+        ]
+      },
+      {
+        "Inefficient Concurrency control and synchronization": [
+          "Unncessary locks",
+          "Unncessary strong memory consistency",
+          "Lock management overhead",
+          "Unnecessary synchronization"
+        ]
+      },
+      "Unnecessary process communiction",
+      {
+        "Inefficient algorithm /data-structure and their implementation": [
+          {
+            "Unnecessary operation/traversal/function call": [
+              "Unnecessary computation",
+              "Unnecessary function call",
+              "Inefficient sparse array computation",
+              "Unnecessary traversal",
+              "Unnecessary itermediate variable usage"
+            ]
+          },
+          {
+            "Redundant operation": [
+              "Redundant traversal",
+              "Redundant allocation",
+              "Redundant computation",
+              "Unnecessary branching"
+            ]
+          },
+          {
+            "Expensive operation": [
+              "Expensive algorithm",
+              "Expensive runtime evaluation",
+              "Expensive many memory references",
+              "Expensive atomic call",
+              "Expensive computational kernel for a target architecture",
+              "expensive high precision calculation",
+              "Expensive exponential operation(O(n) overhead)",
+              "Expensive tensor calculation",
+              "Expensive type-casting",
+              "Expensive library function call",
+              "Expensive integer division",
+              "Expensive function call",
+              "Expensive kernel operation for small matrix"
+            ]
+          },
+          "Frequent  function call",
+          {
+            "Inefficient data-structure library": [
+              "Slower data structure",
+              "Inefficient library API call"
+            ]
+          },
+          {
+            "Usage of improper data type": "Slowdown due to wrong data type"
+          }
+        ]
+      },
+      {
+        "Inefficient memory management": [
+          "memory leak",
+          "repreated memory allocation",
+          "Redundant memory allocation",
+          "Slower memory allocation library call",
+          "Insufficient memory",
+          "unnecessary data copy"
+        ]
+      },
+      "I/O inefficiency",
+      "Unintentional Programming logic error",
+      "Inefficiency due to new compiler version"
+    ]
+  }
