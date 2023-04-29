@@ -1,4 +1,4 @@
-//compile with: g++ prefetch.cpp  -std=c++11 -O3 
+//g++ prefetch.cpp  -std=c++11 -O3 -march=native
 //use -fopt-info-vec-optimized for vectorization info verbose
 //run: ./a.out
 
@@ -10,13 +10,6 @@
 using namespace std;
 
 #define N 1024 * 1024 * 1024
-
-void dot_norm(int* a, int* b, int& sum) {
-  sum = 0;
-  for (int i = 0; i < N; i++){
-    sum += a[i]*b[i];
-  }
-}
 
 void dot_simd(int* a, int* b, int& sum) {
   __m128i *ap = (__m128i*)a, *bp = (__m128i*)b;
@@ -52,19 +45,11 @@ int main() {
   for(int i = 0; i < N; i++) {
     a[i] = i % 0x000000FF;
     b[i] = i % 0x000000FF;
-  }
-  cout << a << " " << b << endl;
-  
+  } 
   int sum = 0;
   auto t1 = std::chrono::high_resolution_clock::now();
-  dot_norm(a, b, sum);
-  auto t2 = std::chrono::high_resolution_clock::now();
-  cout << sum << " dot_norm " << chrono::duration_cast<chrono::milliseconds>(t2-t1).count() << " milliseconds\n";
-
-  sum = 0;
-  t1 = std::chrono::high_resolution_clock::now();
   dot_simd(a, b, sum);
-  t2 = std::chrono::high_resolution_clock::now();
+  auto t2 = std::chrono::high_resolution_clock::now();
   cout << sum << " dot_simd " << chrono::duration_cast<chrono::milliseconds>(t2-t1).count() << " milliseconds\n";
   return 0;
 }

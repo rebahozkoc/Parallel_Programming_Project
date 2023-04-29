@@ -1,4 +1,4 @@
-//compile with : g++ mat_mult_avx.cpp  -std=c++11 -O3 -march=native
+//compile with : g++ REFERENCE_mat_mult_avx.cpp  -std=c++11 -O3 -march=native
 #include <iostream>
 #include <time.h>
 extern "C"
@@ -14,8 +14,10 @@ int main(){
   float w[row][col];
   float x[col];
   float y[row];
-  float scratchpad[8];
-  for (int i=0; i<row; i++) {
+  float scratchpad[8]; 
+  clock_t t1, t2;
+
+ for (int i=0; i<row; i++) {
     for (int j=0; j<col; j++) {
       w[i][j]=(float)(rand()%1000)/800.0f;
     }
@@ -23,31 +25,6 @@ int main(){
   for (int j=0; j<col; j++) {
     x[j]=(float)(rand()%1000)/800.0f;
   }
- 
-  clock_t t1, t2;
- 
-  t1 = clock();
-  for (int r = 0; r < num_trails; r++)
-    for(int j = 0; j < row; j++)
-      {
-	float sum = 0;
-	float *wj = w[j];
-	for(int i = 0; i < col; i++) {
-	 sum += wj[i] * x[i];
-	}
-	y[j] = sum;
-  }
-  t2 = clock();
-  float diff = (((float)t2 - (float)t1) / CLOCKS_PER_SEC ) * 1000;
-  cout<<"Without SIMD Time taken: "<<diff<<endl;
-   cout<< "Vector result: \n ";
-    cout << "\t";
- for (int i=0; i<row; i++) {
-    cout<<y[i]<<", ";
-  }
-  cout<<endl;
-  cout << "\n\n";
-
  
   __m256 ymm0, ymm1, ymm2, ymm3, ymm4, ymm5, ymm6, ymm7,
     ymm8, ymm9, ymm10, ymm11, ymm12, ymm13, ymm14, ymm15;
@@ -129,7 +106,7 @@ int main(){
       y[i] = res;
     }
   t2 = clock();
-  diff = (((float)t2 - (float)t1) / CLOCKS_PER_SEC ) * 1000;
+  float diff = (((float)t2 - (float)t1) / CLOCKS_PER_SEC ) * 1000;
   cout<<"Time taken with SIMD: "<<diff<<endl;
   
   cout<< "Vector result:\n";

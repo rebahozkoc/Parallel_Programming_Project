@@ -1,3 +1,4 @@
+//Compile with g++ REFERENCE_loopUnroll.cpp
 #include <iostream>
 #include <chrono>
 
@@ -20,12 +21,6 @@ void sum_unrolled_prefetched(int* a, int* b ,int &sum) {
     sum += a[i] * b[i];
 }
 
-void sum_normal(int* a, int* b ,int &sum) {
-  for (int i = 0; i < N; i++) {
-    sum += a[i] * b[i];
-  }
-}
-
 int main() {
   cout << "An integer is " << sizeof(int) << " bytes " << endl;
 
@@ -39,13 +34,8 @@ int main() {
 
   int sum=0;
   auto t1 = std::chrono::high_resolution_clock::now();
-  sum_normal(a, b, sum);
-  auto t2 = std::chrono::high_resolution_clock::now();
-  cout << "sum_normal: " << sum << " " << chrono::duration_cast<chrono::milliseconds>(t2 - t1).count() << " milliseconds\n";
- sum=0;
-  t1 = std::chrono::high_resolution_clock::now();
   sum_unrolled_prefetched(a, b, sum);
-  t2 = std::chrono::high_resolution_clock::now();
+  auto t2 = std::chrono::high_resolution_clock::now();
   cout << "sum_unrolled_prefetched: " << sum << " " << chrono::duration_cast<chrono::milliseconds>(t2 - t1).count() << " milliseconds\n";
 
   return 0;
