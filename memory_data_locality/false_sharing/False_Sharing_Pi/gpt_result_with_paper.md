@@ -168,10 +168,21 @@ ChatGpt's second result:
 
 
 ### Results
-For this code ChatGPT detected a performance bug in the code but it didn't classify accordingly to the given classsifcaition groups. After asking to spesify the bug more prescicely it calssified as false sharing however its first solution had a poor performance with 25.9 second. 
-To imporeve its performance a second chance was given, in the second try it used private accumulation to improve the performance and its performance was better but it was still a poor performance compread to the reference code  that used a sum as private variable which had the following result:
+For this code ChatGPT detected a performance bug in the code but it didn't classify accordingly to the given classsifcaition groups. After asking to spesify the bug more prescicely it classified as false sharing however its first solution had a poor performance with 25.9 second. 
+To imporeve its performance a second chance was given, in the second try it used private accumulation to improve the performance and its performance was better but it was still a poor performance compread to the reference code that used a sum as private variable which had the following result:
 
+    rebahozkoc@nebula:~/Parallel_Programming_Project/memory_data_locality/false_sharing/False_Sharing_Pi$ g++ BUGGY_pi.cpp -fopenmp
+    rebahozkoc@nebula:~/Parallel_Programming_Project/memory_data_locality/false_sharing/False_Sharing_Pi$ ./a.out 
+    pi                is 3.14159265358979323846264338327950
+    pi with 1073741824 steps is 0.21246444505167241812 in 11.459840 seconds
     elifyildirir@nebula:~/Parallel_Programming_Project/memory_data_locality/example2/False_Sharing_ Pi$ g++ REFERENCE_pi.cpp -fopenmp
     elifyildirir@nebula:~/Parallel_Programming_Project/memory_data_locality/example2/False_Sharing_ Pi$ ./a.out 
     pi                is 3.14159265358979323846264338327950
     pi with 1073741824 steps is 3.14159265358980022143 in 0.399025 seconds
+    rebahozkoc@nebula:~/Parallel_Programming_Project/memory_data_locality/false_sharing/False_Sharing_Pi$ g++ GPT_pi.cpp -fopenmp
+    rebahozkoc@nebula:~/Parallel_Programming_Project/memory_data_locality/false_sharing/False_Sharing_Pi$ ./a.out 
+    pi                is 3.14159265358979323846264338327950
+    pi with 1073741824 steps is 0.16342920620331019554 in 8.895048 seconds
+    rebahozkoc@nebula:~/Parallel_Programming_Project/memory_data_locality/false_sharing/False_Sharing_Pi$ ./a.out 
+    pi                is 3.14159265358979323846264338327950
+    pi with 1073741824 steps is 3.14159265358980066551 in 3.914425 seconds
