@@ -18,4 +18,4 @@ To improve the performance, the locks should be used only when necessary, and th
 
 
 ### Results
-At first ChatGpt didn't understad the code due to it being a snippet hoewver when it was informed that the context was no needed it correctly identified problem and provied suggestion to apply to the code in its context. 
+At first ChatGpt didn't understand the code due to it being a snippet however when it was informed that the context was no needed it correctly identified problem and provided suggestion to apply to the code in its context. 

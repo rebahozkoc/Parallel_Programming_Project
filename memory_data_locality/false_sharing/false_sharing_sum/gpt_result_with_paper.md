@@ -85,7 +85,7 @@ Here's the modified code that addresses the false sharing issue:
     }
     }
 ### Results:
-ChatGpt correctly classify the performanse bug in this code without additional information in the prompt and performance of the code was as follows:
+ChatGPT correctly classify the performance bug in this code without additional information in the prompt and performance of the code was as follows:
 
     elifyildirir@nebula:~/Parallel_Programming_Project/memory_data_locality/example2$ gcc GPT_false_sharing.c -fopenmp
     elifyildirir@nebula:~/Parallel_Programming_Project/memory_data_locality/example2$ ./a.out 
@@ -97,4 +97,4 @@ ChatGpt correctly classify the performanse bug in this code without additional i
     2 threads - 1073741824 sum - in 1.555036 seconds
 
 
-ChatGpt added padding to avoid the false sharing and it improved  perofromance of code sligthly better than the reference solution.
+ChatGPT added padding to avoid the false sharing and it improved  performance of code sligthly better than the reference solution.

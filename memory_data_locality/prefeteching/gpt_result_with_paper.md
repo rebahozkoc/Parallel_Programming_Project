@@ -99,7 +99,7 @@ ChatGpt's solution code performed as follows:
     An integer is 4 bytes 
     0x7f969aa11010 0x7f959aa10010
     With prefetching 1610612736 ns 824 milliseconds
-The performance of the code was a bit worse comprared to the original cod without prefetch. The code without prefetch perfromed as:
+The performance of the code was a bit worse comprared to the original cod without prefetch. The code without prefetch performed as:
 
     elifyildirir@nebula:~/Parallel_Programming_Project/memory_data_locality/example3$ g++ BUGGY_prefetch.cpp  -std=c++11 -O3 
     elifyildirir@nebula:~/Parallel_Programming_Project/memory_data_locality/example3$ ./a.out 
@@ -107,7 +107,7 @@ The performance of the code was a bit worse comprared to the original cod withou
     0x7f2804b26010 0x7f2704b25010
     Without prefetching 1610612736 ns 667 milliseconds
 
-The reference code with prefetching wşth diffrent distance values performed as:
+The reference code with prefetching with different distance values performed as:
 
     elifyildirir@nebula:~/Parallel_Programming_Project/memory_data_locality/example3$ g++ REFERENCE_prefetch.cpp  -std=c++11 -O3 
     elifyildirir@nebula:~/Parallel_Programming_Project/memory_data_locality/example3$ ./a.out 
@@ -129,7 +129,7 @@ The reference code with prefetching wşth diffrent distance values performed as:
     1610612736 88 633 milliseconds
     1610612736 96 642 milliseconds
 
-With the same pretching distance as chatGpt it performed as:
+With the same pretching distance as ChatGPT it performed as:
 
     elifyildirir@nebula:~/Parallel_Programming_Project/memory_data_locality/example3$ g++ REFERENCE_prefetch.cpp  -std=c++11 -O3 
     elifyildirir@nebula:~/Parallel_Programming_Project/memory_data_locality/example3$ ./a.out 
@@ -139,4 +139,4 @@ With the same pretching distance as chatGpt it performed as:
     Starting prefetching: 
     1610612736 512 699 milliseconds
 
-ChatGpt classified the performance bug correctly however its solution didn't really improved performance of the code and it was behind the reference code's performance.
+ChatGPT classified the performance bug correctly however its solution didn't really improved performance of the code and it was behind the reference code's performance.

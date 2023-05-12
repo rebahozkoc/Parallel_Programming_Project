@@ -104,7 +104,7 @@ In the above code, we have added the #pragma omp parallel for directive before t
 
 ### Result:
 
-First GPT did not found a bug and said it is correct. After when I add "performance bug" expression to the prompt, it classified the bug correctly and gave the category of the bug as `algorithm/data-structure and their implementation` and fixed it. The code is significantly faster than the sequential version and slightly slower than the reference implementation. Here is the execution times:
+First GPT did not found a bug and said it is correct. After when I add "performance bug" expression to the prompt, it classified the bug correctly and gave the category of the bug as `algorithm/data-structure and their implementation` and fixed it. The code is significantly faster than the sequential version and slightly slower than the reference implementation. Here are the execution times:
 
         Parallel_Programming_Project/missing_parallelism/SIMD/example2$ g++ BUGGY_sequential_pi.cpp -fopenmp
         Parallel_Programming_Project/missing_parallelism/SIMD/example2$ ./a.out 

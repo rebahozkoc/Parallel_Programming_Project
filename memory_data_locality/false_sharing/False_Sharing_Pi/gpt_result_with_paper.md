@@ -106,7 +106,7 @@ ChatGpt Result:
 
 Since the performance of the code was worst than the original code a second chance was given
 ### Prompt:
-is there a better way then padding?
+Is there a better way then padding?
 
 ### Response:
 
@@ -168,8 +168,8 @@ ChatGpt's second result:
 
 
 ### Results
-For this code ChatGPT detected a performance bug in the code but it didn't classify accordingly to the given classsifcaition groups. After asking to spesify the bug more prescicely it classified as false sharing however its first solution had a poor performance with 25.9 second. 
-To imporeve its performance a second chance was given, in the second try it used private accumulation to improve the performance and its performance was better but it was still a poor performance compread to the reference code that used a sum as private variable which had the following result:
+For this code ChatGPT detected a performance bug in the code but it didn't classify accordingly to the given classification groups. After asking to spesify the bug more precisely it classified as false sharing however its first solution had a poor performance with 25.9 second. 
+To imporeve its performance a second chance was given, in the second try it used private accumulation to improve the performance and its performance was better but it was still a poor performance compared to the reference code that used a sum as private variable which had the following result:
 
     rebahozkoc@nebula:~/Parallel_Programming_Project/memory_data_locality/false_sharing/False_Sharing_Pi$ g++ BUGGY_pi.cpp -fopenmp
     rebahozkoc@nebula:~/Parallel_Programming_Project/memory_data_locality/false_sharing/False_Sharing_Pi$ ./a.out 
