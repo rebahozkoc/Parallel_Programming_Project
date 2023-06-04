@@ -96,7 +96,7 @@ I apologize for the previous suggestion not improving the performance. Here's an
     }
 
 ### Results 
-Chatgpt correctly identified the performance bug howerver its first solution performed poorly after it has been notified about the poor performnce its second soluiton improved original code and was fater than the reference code.
+Chatgpt correctly identified the performance bug however its first solution performed poorly after it has been notified about the poor performnce its second soluiton improved original code and was faster than the reference code.
 
 The performances was as follows:
 ### Buggy code
