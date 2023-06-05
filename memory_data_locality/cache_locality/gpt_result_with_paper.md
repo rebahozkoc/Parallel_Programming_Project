@@ -117,7 +117,7 @@ This modification reduces the number of cache misses, which can lead to signific
 
 # RESULT:
 
-After giving the paper for categorization the performance of ChatGPT dropped significantly. Firstly, it could not catch the error and could not classify the perfomance bug properly. Then, it gave a solution which performed slightly better than buggy code but it was 3 times slow than the referance implementation. Output is like this:
+After giving the paper for categorization the performance of ChatGPT dropped significantly. Firstly, it could not catch the error and could not classify the performance bug properly. Then, it gave a solution which performed slightly better than buggy code but it was 3 times slow than the reference implementation. Output is like this:
 
         rebahozkoc@nebula:~/Parallel_Programming_Project/memory_data_locality/example1$ g++ GPT_result_with_paper.cpp 
         rebahozkoc@nebula:~/Parallel_Programming_Project/memory_data_locality/example1$ ./a.out 

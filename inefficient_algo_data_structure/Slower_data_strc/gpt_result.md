@@ -14,4 +14,4 @@ Without additional context or information about the specific requirements of the
 
 
 ### Results
-ChatGPT couln't classify the bug as inefficent data structure it migt be due to lack of context but is observed it cannot detect the bug from a snippet.
+ChatGPT couldn't classify the bug as inefficient data structure it might be due to lack of context but is observed it cannot detect the bug from a snippet.

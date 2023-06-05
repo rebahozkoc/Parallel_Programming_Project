@@ -133,4 +133,4 @@ The code you provied gave this error : Segmentation fault (core dumped)
 I apologize for the error. The issue might be related to the memory alignment of the arrays. Here's a revised version of the code that should work properly:
 ### Results
 
-ChatGPT correctly identifed the performance bug however the solution it provied resulted in segmentation fault.ChatGPT then was notified about this but its new solution didn't solve the segmentation fault therefore it was unsucessull to solve this performance bug.
+ChatGPT correctly identifed the performance bug however the solution it provided resulted in segmentation fault.ChatGPT then was notified about this but its new solution didn't solve the segmentation fault therefore it was unsuccessful to solve this performance bug.
