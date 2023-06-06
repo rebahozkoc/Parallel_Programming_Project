@@ -71,38 +71,52 @@ __global__ void matrixMultiplySimple(float *a, float *b, float *c, int width) {
   }
 }
 
+__global__ void matrixMultiplyOptimised(float *a, float *b, float *c, int width) {
 
-// Corrected version with improved shared memory coalescing
-__global__ void matrixMultiplyOptimised(float* a, float* b, float* c, int width) {
-  // Allocate 2D tiles in shared memory
-  __shared__ float s_a[TILE_WIDTH][TILE_WIDTH];
-  __shared__ float s_b[TILE_WIDTH][TILE_WIDTH];
+    // Calculate row and column index of element
+    int row = blockIdx.y * blockDim.y + threadIdx.y; 
+    int col = blockIdx.x * blockDim.x + threadIdx.x;
 
-  // Calculate row and column index of element
-  int row = blockIdx.y * blockDim.y + threadIdx.y;
-  int col = blockIdx.x * blockDim.x + threadIdx.x;
+    // Check if thread is in the first half of the warp
+    if (threadIdx.x < width / 2) {
 
-  float result = 0;
+        // Load next element from a into shared memory
+        __shared__ float s_a[TILE_WIDTH][TILE_WIDTH];
+        s_a[threadIdx.x][threadIdx.y] = a[row * width + (threadIdx.x)];
 
-  // Loop over tiles of input in phases
-  for (int p = 0; p < width / TILE_WIDTH; p++) {
-    // Collaboratively load tiles into shared memory with improved coalescing
-    s_a[threadIdx.y][threadIdx.x] = a[row * width + (p * TILE_WIDTH + threadIdx.y)];
-    s_b[threadIdx.y][threadIdx.x] = b[col + width * (p * TILE_WIDTH + threadIdx.x)];
+        // Load next element from b into shared memory
+        __shared__ float s_b[TILE_WIDTH][TILE_WIDTH];
+        s_b[threadIdx.x][threadIdx.y] = b[col + width * (threadIdx.x)];
 
-    __syncthreads(); // Wait until all data is loaded before allowing any threads in the block to continue
+        // Perform a dot product of the two elements
+        float result = 0;
+        for (int i = 0; i < TILE_WIDTH; i++) {
+            result += s_a[i][threadIdx.y] * s_b[i][threadIdx.x];
+        }
 
-    // Dot product between row of s_a and column of s_b
-    for (int i = 0; i < TILE_WIDTH; i++) {
-      result += s_a[threadIdx.y][i] * s_b[i][threadIdx.x];
+        // Store the result of the dot product into shared memory
+        c[row * width + col] = result;
+    } else {
+
+        // Load next element from b into shared memory
+        __shared__ float s_b[TILE_WIDTH][TILE_WIDTH];
+        s_b[threadIdx.x][threadIdx.y] = b[col + width * (threadIdx.x)];
+
+        // Load next element from a into shared memory
+        __shared__ float s_a[TILE_WIDTH][TILE_WIDTH];
+        s_a[threadIdx.x][threadIdx.y] = a[row * width + (threadIdx.x - width / 2)];
+
+        // Perform a dot product of the two elements
+        float result = 0;
+        for (int i = 0; i < TILE_WIDTH; i++) {
+            result += s_a[i][threadIdx.y] * s_b[i][threadIdx.x];
+        }
+
+        // Store the result of the dot product into shared memory
+        c[row * width + col] = result;
     }
-
-    __syncthreads(); // Wait until all calculations are finished before allowing any threads in the block to continue
-  }
-
-  // Write result
-  c[row * width + col] = result;
 }
+
 
 int main() {
   int width = 2048; // Define width of square matrix
