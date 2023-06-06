@@ -20,6 +20,7 @@ int main () {
     column_sum[i] = 0.0;
   }
   
+  start = clock();
   for (i = 0; i < N; i++) { 
     double sum = 0;
     for (j = 0; j < N; j++) {
@@ -27,6 +28,8 @@ int main () {
     }
     column_sum[i] = sum;
   }
+  end = clock();
+  cout << "col major version took " << ((double)(end - start)) / CLOCKS_PER_SEC << endl; 
   
   for (i = 0; i < N; i++) {
     delete [] b[i];
