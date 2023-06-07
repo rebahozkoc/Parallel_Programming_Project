@@ -1,4 +1,5 @@
 ## Prompt
+
 I want you to classify the performance bug in this code snippet, you don't need to know the whole context to identify the bug : 
 
 Commit  cc5e859
@@ -36,7 +37,9 @@ Commit  cc5e859
 
         createIPCComms();
     }
+
 ## Response
+
 The performance bug in this code snippet can be classified as "Unnecessary function call" or "Redundant code."
 
 In the destroyGhostTexObject function, there is a call to cudaDeviceSynchronize() before destroying the texture objects ghostTex[0] and ghostTex[1]. However, this synchronization is not necessary at that specific point in the code.
@@ -47,4 +50,5 @@ Therefore, the call to cudaDeviceSynchronize() in this context is redundant and 
 
 
 ## Result
+
 ChatGPT correctly identified the bug and recommend solutions.
